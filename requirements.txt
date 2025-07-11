@@ -1,0 +1,11 @@
+python-dotenv
+telethon
+psycopg2-binary
+fastapi
+uvicorn
+pandas
+dbt-postgres
+opencv-python
+ultralytics
+python-multipart
+loguru

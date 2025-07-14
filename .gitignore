@@ -7,6 +7,6 @@ __pycache__/
 .DS_Store
 data/raw/
 data/processed/
-models/
 *.ipynb_checkpoints
 session_name.session
+images/

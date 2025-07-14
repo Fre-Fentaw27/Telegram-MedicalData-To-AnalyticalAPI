@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    tables:
+      - name: telegram_messages
+        description: "Raw telegram messages data loaded from JSON files"
+
+models:
+  - name: stg_telegram_messages
+    description: "Cleaned and transformed staging model for telegram messages"
+    columns:
+      - name: message_id
+        description: "Primary key for the message"
+        tests:
+          - unique
+          - not_null
+      - name: message_date
+        description: "Timestamp when message was posted"
+        tests:
+          - not_null
+      - name: channel_name
+        description: "Name of the telegram channel"
+        tests:
+          - not_null

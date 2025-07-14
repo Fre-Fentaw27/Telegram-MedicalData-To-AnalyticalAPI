@@ -28,9 +28,9 @@ An end-to-end data pipeline for Telegram, leveraging dbt for transformation, Dag
 
 - pip install -r requirements.txt
 
-# Set up PostgreSQL
+- Set up PostgreSQL
 
-# Configure environment variables (.env file)
+- Configure environment variables (.env file)
 
 # Task 1: Data Scraping and Collection (Extract & Load)
 

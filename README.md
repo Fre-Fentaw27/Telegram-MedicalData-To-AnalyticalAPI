@@ -2,29 +2,29 @@
 
 An end-to-end data pipeline for Telegram, leveraging dbt for transformation, Dagster for orchestration, and YOLOv8 for data enrichment.
 
-## ✅ Task 0: Project Setup & Environment Management
+# Task 0: Project Setup & Environment Management
 
-# 📦 Prerequisites
+## 📦 Prerequisites
 
 - Python 3.8+
 - PostgreSQL 13+
 - pgAdmin 4
 - Git
 
-# 🛠️ Setup Instructions
+## 🛠️ Setup Instructions
 
-# Clone the repository
+## Clone the repository
 
 - git clone https://github.com/yourusername/Telegram-MedicalData-To-AnalyticalAPI.git
 - cd Telegram-MedicalData-To-AnalyticalAPI
 
-# Create and activate virtual environment
+## Create and activate virtual environment
 
 - python -m venv .venv
 - source .venv/bin/activate # Linux/Mac
 - .\.venv\Scripts\activate # Windows
 
-# Install Python dependencies
+## Install Python dependencies
 
 - pip install -r requirements.txt
 
@@ -32,9 +32,9 @@ An end-to-end data pipeline for Telegram, leveraging dbt for transformation, Dag
 
 # Configure environment variables (.env file)
 
-## Task 1: Data Scraping and Collection (Extract & Load)
+# Task 1: Data Scraping and Collection (Extract & Load)
 
-# 📋 Data Sources
+### 📋 Data Sources
 
 Telegram channels:
 
@@ -42,7 +42,7 @@ Telegram channels:
 - @lobelia4cosmetics
 - @tikvahpharma
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 data/
 ├── raw/ # Raw JSON files
@@ -58,22 +58,22 @@ src/
 │ └── data_loader.py
 └── load_to_postgres.py
 
-# 🔧 Key Components
+## 🔧 Key Components
 
 - Telegram Scraper (telegram_scraper.py)
 
-# 🚀 Execution Flow
+## 🚀 Execution Flow
 
-# Run the scraper (saves to JSON)
+## Run the scraper (saves to JSON)
 
 - python src/scraping/telegram_scraper.py
 
-# 📊 Sample Output
+## 📊 Sample Output
 
 Loaded 76 messages from data/raw/telegram_messages/2022-09-05/CheMed123.json
 Loaded 1000 messages from data/raw/telegram_messages/2025-05-20/lobelia4cosmetics.json
 
-## ✅ Task 2: Data Modeling and Transformation (Transform)
+# Task 2: Data Modeling and Transformation (Transform)
 
 # Medical Analytics Data Transformation (dbt Project)
 

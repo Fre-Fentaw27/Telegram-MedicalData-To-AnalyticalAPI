@@ -202,3 +202,9 @@ columns:
 - (To be implemented) FastAPI application (src/api/) with analytical endpoints to query dbt marts.
 - Planned endpoints include: - /api/reports/top-products - /api/channels/{channel_name}/activity - /api/search/messages
 - Uses Pydantic for data validation.
+
+# Task 5: Pipeline Orchestration (Dagster)
+
+- Defined Dagster job (telegram_pipeline_job) in orchestration/pipeline_job.py with ops for scraping, loading transforming, and enriching data.
+- Configured orchestration/repository.py as Dagster repository entry point.
+- Implemented a daily schedule (daily_telegram_pipeline_schedule) for automated pipeline execution.

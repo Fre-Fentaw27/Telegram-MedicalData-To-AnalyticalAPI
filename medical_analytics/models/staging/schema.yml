@@ -1,26 +1,47 @@
-version: 2
+# models/staging/schema.yml
 
+# This section defines your raw data sources
 sources:
   - name: raw
-    schema: raw
+    schema: raw # Assuming your raw Telegram messages are in the 'raw' schema
     tables:
       - name: telegram_messages
-        description: "Raw telegram messages data loaded from JSON files"
+        description: "Raw telegram messages data loaded from JSON files."
 
+  - name: analytics # This 'analytics' source refers to the schema where your *raw* fct_image_detections table exists
+    schema: analytics_analytics # This schema should match where your raw fct_image_detections is. If it's the same as your mart schema, that's fine.
+    tables:
+      - name: fct_image_detections # This is the RAW source table for detections
+        description: "Raw object detection results from Python script (source table)."
+        columns:
+          - name: message_id
+            tests: [not_null]
+          - name: detected_object_class
+            tests: [not_null]
+          - name: confidence_score
+            tests: [not_null]
+
+# Staging models
 models:
   - name: stg_telegram_messages
-    description: "Cleaned and transformed staging model for telegram messages"
+    description: "Cleaned staging model for telegram messages"
     columns:
       - name: message_id
-        description: "Primary key for the message"
-        tests:
-          - unique
-          - not_null
+        tests: [unique, not_null]
       - name: message_date
-        description: "Timestamp when message was posted"
-        tests:
-          - not_null
+        tests: [not_null]
       - name: channel_name
-        description: "Name of the telegram channel"
-        tests:
-          - not_null
+        tests: [not_null]
+      - name: is_image_flag
+        tests: [not_null]
+      - name: image_path
+        tests: [not_null]
+      - name: has_media_flag
+      - name: message_text
+      - name: view_count
+      - name: scraped_at
+      - name: forwarded_from
+      - name: reply_count
+      - name: forward_count
+# REMOVED the 'fct_image_detections' model definition from here.
+# It should only be defined in the 'models/marts/core/schema.yml'

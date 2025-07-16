@@ -1,3 +1,4 @@
+-- models/staging/stg_telegram_messages.sql
 {{
   config(
     materialized='view',
@@ -12,7 +13,7 @@ SELECT
     views AS view_count,
     channel AS channel_name,
     has_media AS has_media_flag,
-    is_image AS is_image_flag,
+    is_image AS is_image_flag, -- THIS LINE IS CORRECT! 'is_image' from raw is aliased to 'is_image_flag'
     image_path,
     scraped_at,
     -- Extract additional fields from raw_data JSON if needed

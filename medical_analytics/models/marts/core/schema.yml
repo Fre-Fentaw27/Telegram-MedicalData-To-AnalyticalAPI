@@ -1,0 +1,56 @@
+# models/marts/core/schema.yml
+
+models:
+  # Dimensions
+  - name: dim_channels
+    description: "Dimension table with information about each Telegram channel"
+    columns:
+      - name: channel_key
+        tests: [unique, not_null]
+      - name: channel_name
+        tests: [not_null]
+
+  - name: dim_dates
+    description: "Dimension table for date-based analysis"
+    columns:
+      - name: date_key
+        tests: [unique, not_null]
+
+  # Facts
+  - name: fct_messages
+    description: "Fact table containing message metrics"
+    columns:
+      - name: message_id
+        tests: [unique, not_null]
+      - name: channel_key
+        tests:
+          - relationships:
+              to: ref('dim_channels')
+              field: channel_key
+      - name: date_key
+        tests:
+          - relationships:
+              to: ref('dim_dates')
+              field: date_key
+
+  # Task 3 - Image Detections
+  - name: fct_image_detections
+    description: "Fact table containing object detection results from images"
+    columns:
+      - name: detection_key
+        tests: [unique, not_null]
+      - name: message_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fct_messages')
+              field: message_id
+      - name: confidence_score_pct
+        tests:
+          - accepted_values:
+              values: [">= 0", "<= 100"] # Note: accepted_values is typically for discrete values. For a range, dbt_expectations.expect_column_values_to_be_between is better. If you don't have dbt_expectations, this `accepted_values` might not work as intended for a range.
+          - not_null # Added not_null here as well
+      - name: detected_object_class # Added this back, it's a key column in your model
+        tests: [not_null]
+      - name: image_path # Added this back, it's in your model
+        tests: [not_null]

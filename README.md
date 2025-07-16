@@ -196,3 +196,9 @@ columns:
 - Uses YOLOv8n (nano) model (auto-downloads 6.25MB weights)
 
 - Saves results to analytics_analytics.fct_image_detections:
+
+# Task 4: Build an Analytical API Fast API
+
+- (To be implemented) FastAPI application (src/api/) with analytical endpoints to query dbt marts.
+- Planned endpoints include: - /api/reports/top-products - /api/channels/{channel_name}/activity - /api/search/messages
+- Uses Pydantic for data validation.
